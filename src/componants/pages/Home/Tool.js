@@ -1,16 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Tool = () => {
+const Tool = ({ tool }) => {
+
     return (
-        <div class="card w-96 bg-base-100 shadow-xl">
-            <figure class="px-10 pt-10">
-                <img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" class="rounded-xl" />
+        <div className="card w-96 bg-base-100 shadow-xl hover:w-100 ">
+            <figure className="px-10 pt-10">
+                <img src={tool.image} alt="Shoes" className="rounded-xl" />
             </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Shoes!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div class="card-actions">
-                    <button class="btn btn-primary">Buy Now</button>
+            <div className="card-body items-center text-center">
+                <h2 className="card-title text-3xl font-bold">{tool.name}</h2>
+                <p className='text-2xl font-bold text-red-500'>Price:{tool.price}</p>
+                <p className='text-xl font-bold'>Minimum Order:{tool.minimumOrder}</p>
+                <p className='text-xl font-bold'>Quantity:{tool.quantity}</p>
+                <p className='font-bold'>Descrition:{tool.description}</p>
+
+
+                <div className="card-actions">
+                    <Link to='/purchase' className="btn btn-primary bg-gradient-to-r from-primary font-bold to-secondary">Purchase</Link>
                 </div>
             </div>
         </div>
