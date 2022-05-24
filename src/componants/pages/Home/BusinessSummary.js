@@ -1,10 +1,8 @@
 import React from 'react';
-import { BeakerIcon } from '@heroicons/react/solid'
-import people from '../../images/teamwork_users_people_icon_152062.png'
-import county from '../../images/county.png'
-import feedback from '../../images/feedback.png'
-import projects from '../../images/projects-icon-29.jpg'
 import { IoIosPeople } from 'react-icons/io';
+import { ImFlag } from 'react-icons/im';
+import { VscFeedback } from 'react-icons/vsc';
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 
 
 const summaries = [
@@ -17,21 +15,21 @@ const summaries = [
     },
     {
         _id: 2,
-        image: county,
+        image: <ImFlag className='text-[100px] text-primary' ></ImFlag>,
         amount: '70+',
         name: 'Countries'
 
     },
     {
         _id: 3,
-        image: feedback,
+        image: <VscFeedback className='text-[100px] text-primary'></VscFeedback>,
         amount: '400+',
         name: 'Feedbacks'
 
     },
     {
         _id: 4,
-        image: projects,
+        image: <AiOutlineFundProjectionScreen className='text-[100px] text-primary'></AiOutlineFundProjectionScreen>,
         amount: '250+',
         name: 'Complete Projects'
 
@@ -40,18 +38,21 @@ const summaries = [
 
 const BusinessSummary = () => {
     return (
-        <div className='mt-40'>
+        <div className='mt-24'>
+            <div className="divider"></div>
+
             <h1 className="text-5xl text-center text-primary">Trusted by millions of businesses</h1>
-            <h3 className="text-4xl text-center text-secondary">let's see user expectation </h3>
+            <h3 className="text-4xl text-center text-secondary mt-2">Let's see user expectation </h3>
             <div className='pt-12 my-auto flex justify-center'>
                 {
                     summaries.map(sumary => <div
-                        class="card w-56 bg-base-100 shadow-xl mx-12 mb-40 ">
-                        <figure class="px-10 pt-10">
+                        key={sumary._id}
+                        className="card w-56 bg-base-100 shadow-xl mx-12 mb-40 ">
+                        <figure className="px-10 pt-10">
                             {<div >{sumary.image}</div>}
                         </figure>
-                        <div class="card-body items-center text-center">
-                            <h2 class="card-title text-3xl font-bold">{sumary.amount}</h2>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title text-3xl font-bold">{sumary.amount}</h2>
                             <p className='font-bold'>{sumary.name}</p>
 
                         </div>
