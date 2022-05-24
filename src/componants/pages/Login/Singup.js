@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -12,13 +12,15 @@ const Singup = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
+
     let singinError;
-    if (loading) {
+    if (loading || updating) {
         return <Login></Login>
     }
 
@@ -27,12 +29,13 @@ const Singup = () => {
     }
 
     if (error) {
-        singinError = <p className='text-red-500'> {error?.message}</p>
+        singinError = <p className='text-red-500'> {error?.message || Uerror?.message}</p>
     }
 
-    const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password)
-        console.log(data);
+    const onSubmit = async (data) => {
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name });
+
     };
 
     return (

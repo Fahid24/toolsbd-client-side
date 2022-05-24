@@ -1,9 +1,11 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { async } from '@firebase/util';
+import React, { useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from './SocialLogin/SocicalLogin';
+import Loading from '../sheard/Loading/Loading'
 
 
 const Login = () => {
@@ -17,23 +19,28 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, Aerror] = useSendPasswordResetEmail(auth);
+    const [email, setEmail] = useState('');
+
     let singinError;
-    if (loading) {
-        return <Login></Login>
+    if (loading || sending) {
+        return <Loading></Loading>
     }
 
     if (user) {
         navigate(from, { replace: true })
     }
 
-    if (error) {
-        singinError = <p className='text-red-500'> {error?.message}</p>
+    if (error || Aerror) {
+        singinError = <p className='text-red-500'> {error?.message || Aerror?.message}</p>
     }
 
-    const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password)
+    const onSubmit = async data => {
+        await signInWithEmailAndPassword(data.email, data.password)
         console.log(data);
+
     };
+
 
     return (
         <div className='flex h-screen justify-center items-center'>
@@ -47,6 +54,8 @@ const Login = () => {
                                 <span className="label-text">Email</span>
                             </label>
                             <input
+
+                                onChange={(e) => setEmail(e.target.value)}
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -89,9 +98,14 @@ const Login = () => {
                         {singinError}
                         <input className='btn w-full btn-wide bg-gradient-to-r from-primary to-secondary' type="submit" value='Log in' />
                     </form>
-                    <Link className='text-secondary font-bold' to='/singup'>Create account</Link>
+                    <div className=''><Link className='text-secondary font-bold' to='/singup'>Create account</Link><h1 className='flex'>forgot password?<p onClick={async () => {
+                        await sendPasswordResetEmail(email);
+                        alert('Sent email');
+                    }}
+                        className=' text-red-500 font-bold'>Change password</p> </h1></div>
                     <div className="divider">OR</div>
                     <SocialLogin></SocialLogin>
+
                 </div>
             </div>
         </div>

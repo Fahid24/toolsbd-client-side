@@ -1,10 +1,19 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import image from '../../../images/pngegg.png'
 
 const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    };
+
     return (
 
-        <div className="navbar bg-cyan-300 ">
+        <div className="navbar bg-violet-300 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -19,7 +28,7 @@ const Navbar = () => {
                         <li><Link to='/contact'>Contact Us</Link></li>
                     </ul>
                 </div>
-                <Link to='' className="btn btn-ghost normal-case text-4xl">ToolsBD🛠️ </Link>
+                <Link to='' className="btn btn-ghost normal-case text-4xl">ToolsBD<img className='w-[50px]' src={image} alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -32,7 +41,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='login' className=" font-bold  btn bg-red-600">Login</Link>
+                {user ? <button onClick={logout} className=" font-bold  btn bg-primary btn-sm">sing out</button> : <Link to='login' className=" btn-sm font-bold  btn bg-red-600">Login</Link>}
             </div>
         </div>
 
