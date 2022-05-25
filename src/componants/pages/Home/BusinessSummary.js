@@ -43,7 +43,7 @@ const BusinessSummary = () => {
 
             <h1 className="text-5xl text-center text-primary">Trusted by millions of businesses</h1>
             <h3 className="text-4xl text-center text-secondary mt-2">Let's see user expectation </h3>
-            <div className='pt-12 my-auto flex justify-center'>
+            <div className='pt-12 my-auto grid grid-cols-1 mx-24 lg:flex justify-center'>
                 {
                     summaries.map(sumary => <div
                         key={sumary._id}

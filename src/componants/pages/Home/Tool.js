@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Tool = ({ tool }) => {
+    const navigate = useNavigate()
 
+    const handleUpdate = (id) => {
+        navigate(`/toos/${id}`)
+    }
     return (
         <div className="card w-96 bg-base-100 shadow-xl hover:w-100 ">
             <figure className="px-10 pt-10">
@@ -17,7 +21,7 @@ const Tool = ({ tool }) => {
 
 
                 <div className="card-actions">
-                    <Link to='/purchase' className="btn btn-primary bg-gradient-to-r from-primary font-bold to-secondary">Purchase</Link>
+                    <button onClick={() => handleUpdate(tool._id)} className="btn btn-primary bg-gradient-to-r from-primary font-bold to-secondary">Purchase</button>
                 </div>
             </div>
         </div>
