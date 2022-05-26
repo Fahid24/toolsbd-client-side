@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
+import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
             <div className="drawer-content  ">
                 <h1 className='text-3xl font-bold text-primary mt-5 text-center'>Welcome to our dashboard</h1>
                 <Outlet></Outlet>
-                <label for="my-drawer-2" className="mt-56 drawer-button lg:hidden">Open drawer</label>
+                <label for="my-drawer-2" className="mt-56 drawer-button lg:hidden"><MdOutlineArrowForwardIos className='font-bold text-5xl mt-24'></MdOutlineArrowForwardIos></label>
 
             </div>
             <div className="drawer-side">

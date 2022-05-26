@@ -18,7 +18,7 @@ const Purchase = () => {
     const [quant, setQuant] = useState(detail.minimumOrder);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tools/${id}`)
+        fetch(` https://quiet-mesa-88785.herokuapp.com/tools/${id}`)
             .then(res => res.json())
             .then(data => {
                 setDetail(data[0])
@@ -32,7 +32,7 @@ const Purchase = () => {
         data.image = image;
         data.quantity = quantity;
 
-        fetch('http://localhost:5000/booking', {
+        fetch(' https://quiet-mesa-88785.herokuapp.com/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -112,30 +112,11 @@ const Purchase = () => {
                                 <label class="label">
                                     <span class="label-text">Quantity</span>
                                 </label>
-                                <input
-                                    {...register("quantity", {
-                                        required: {
-                                            value: true,
-                                            message: 'quantity is required'
-                                        },
-                                        minLength: {
-                                            value: 5,
-                                            message: `Please input minimum ${minimumOrder} pics or more `
-                                        },
-                                        maxLength: {
-                                            value: 50,
-                                            message: `Please input maximum ${quantity} or fewer `
-                                        }
-                                    })}
-                                    type="number" placeholder=""
-                                    class="input w-full input-bordered " onChange={handleQuant} />
-                                <label className="label">
-                                    {errors.quantity?.type === 'required' && <span className="label-text-alt text-red-500"> {errors.quantity.message} </span>}
-                                    {errors.quantity?.type === 'minLength' && <span className="label-text-alt text-red-500"> {errors.quantity.message} </span>}
-                                </label>
-
+                                <input {...register("quantity")} value={quant} class="input w-full input-bordered " onChange={handleQuant} />
+                                {(quant < minimumOrder) && <span className='text-red-500'>Please input minimum {minimumOrder} pics or more </span>}
+                                {(quant > quantity) && <span className='text-red-500'>Please input maximum {quantity} or fewer </span>}
                             </div>
-                            <input type="submit" class="btn " value='book now' className="btn w-full btn-primary bg-gradient-to-r from-primary font-bold to-secondary mt-5" />
+                            <input disabled={(quant < minimumOrder)(quant > quantity)} type="submit" class="btn " value='Login' className='w-80 mx-auto btn block mt-5' />
 
                         </form>
 

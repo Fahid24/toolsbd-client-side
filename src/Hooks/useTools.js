@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useTools = () => {
     const [tools, setTools] = useState([]);
     useEffect(() => {
-        const url = 'http://localhost:5000/tools';
+        const url = ' https://quiet-mesa-88785.herokuapp.com/tools';
 
         fetch(url)
             .then(res => res.json())
