@@ -2,6 +2,7 @@ import React from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../Hooks/useToken';
 import auth from '../../firebase.init';
 import Login from './Login';
 import SocialLogin from './SocialLogin/SocicalLogin';
@@ -18,13 +19,14 @@ const Singup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
+    const [token] = useToken(user)
 
     let singinError;
     if (loading || updating) {
         return <Login></Login>
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true })
     }
 

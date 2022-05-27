@@ -9,8 +9,13 @@ import OrderRow from './OrderRow';
 const MyOrders = () => {
 
     const [user, loading] = useAuthState(auth);
-    const [order, setOrder] = useState()
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`)
+    const [order, setOrder] = useState(null)
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
         .then(res => res.json()));
     if (loading || isLoading) {
         return <Loading></Loading>
@@ -18,15 +23,15 @@ const MyOrders = () => {
 
     return (
         <div>
-            <div class="text-sm breadcrumbs">
+            <div className="text-sm breadcrumbs">
                 <ul>
                     <li>{orders.length}</li>
                     <li>My orders</li>
                 </ul>
             </div>
 
-            <div class="overflow-x-auto w-full">
-                <table class="table w-full">
+            <div className="overflow-x-auto w-full">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>

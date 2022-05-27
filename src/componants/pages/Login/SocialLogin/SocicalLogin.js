@@ -4,6 +4,7 @@ import img from '../../../images/download-removebg-preview.png'
 import Loading from '../../sheard/Loading/Loading';
 import { useLocation, useNavigate } from 'react-router';
 import auth from '../../../firebase.init';
+import useToken from '../../../../Hooks/useToken';
 
 
 
@@ -12,6 +13,7 @@ const SocialLogin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const [token] = useToken(user)
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
@@ -19,7 +21,7 @@ const SocialLogin = () => {
     if (loading) {
         return <Loading></Loading>
     }
-    if (user) {
+    if (token) {
         navigate(from, { replace: true })
     }
     return (

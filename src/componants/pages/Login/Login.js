@@ -6,12 +6,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from './SocialLogin/SocicalLogin';
 import Loading from '../sheard/Loading/Loading'
+import useToken from '../../../Hooks/useToken';
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
+
     const from = location.state?.from?.pathname || '/';
     const [
         signInWithEmailAndPassword,
@@ -21,13 +23,13 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, Aerror] = useSendPasswordResetEmail(auth);
     const [email, setEmail] = useState('');
-
+    const [token] = useToken(user)
     let singinError;
     if (loading || sending) {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true })
     }
 

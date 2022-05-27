@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import useToken from '../../../../Hooks/useToken';
 import auth from '../../../firebase.init';
 import image from '../../../images/pngegg.png'
 import Loading from '../../sheard/Loading/Loading';
@@ -9,6 +10,8 @@ import Loading from '../../sheard/Loading/Loading';
 const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
     const logout = () => {
+        localStorage.removeItem('accessToken');
+
         signOut(auth);
     };
 
