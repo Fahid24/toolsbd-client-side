@@ -9,18 +9,22 @@ import OrderRow from './OrderRow';
 const MyOrders = () => {
 
     const [user, loading] = useAuthState(auth);
-    const [order, setOrder] = useState(null)
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`, {
-        method: 'GET',
-        headers: {
-            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-    })
-        .then(res => res.json()));
+    const [order, setOrder] = useState(null);
+    console.log(user);
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`).then(res => res.json()))
+        ;
+    // , {
+    //     method: 'GET',
+    //     headers: {
+    //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    //     }
+    // }
+
+
     if (loading || isLoading) {
         return <Loading></Loading>
     }
-
+    console.log(orders);
     return (
         <div>
             <div className="text-sm breadcrumbs">

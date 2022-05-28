@@ -38,8 +38,8 @@ const CancelOrder = ({ order, refetch }) => {
                     <h3 className="font-bold text-lg">Hey <span className='text-info font-bold'>{order?.name}</span></h3>
                     <p className="py-4"> Are you sure to remove <span className='font-bold'>{order?.partsName}</span>  from your dashboard? </p>
                     <div className="modal-action">
-                        <label for="confirmation-cancel-modal" className="btn btn-sm ">Cancel</label>
-                        <label for="confirmation-cancel-modal" onClick={handleDelete} className="btn btn-sm btn-success">Confirm</label>
+                        <label htmlFor="confirmation-cancel-modal" className="btn btn-sm ">Cancel</label>
+                        <label htmlFor="confirmation-cancel-modal" onClick={handleDelete} className="btn btn-sm btn-success">Confirm</label>
                     </div>
                 </div>
             </div>

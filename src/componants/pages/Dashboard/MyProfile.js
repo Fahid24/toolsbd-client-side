@@ -10,10 +10,9 @@ import { toast } from 'react-toastify';
 
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const [profiles, setProfiles] = useState({})
-    console.log(profiles);
 
 
+    const profiles = JSON.parse(window.localStorage.getItem('profile'));
 
     // const { data: profiles, isLoading, refetch } = useQuery('profiles', () => fetch(`http://localhost:5000/profile/${user.email}`, {
     //     method: 'GET',
@@ -39,7 +38,7 @@ const MyProfile = () => {
             link: link,
         }
         localStorage.setItem('profile', JSON.stringify(profile))
-        setProfiles(profile)
+
         // fetch('http://localhost:5000/profile', {
         //     method: 'POST',
         //     headers: {
@@ -75,7 +74,7 @@ const MyProfile = () => {
 
                 <div className="card-body w-full text-left">
 
-                    <label for="my-modal" className="btn modal-button btn-xs ml-[70%] lg:ml-[77%]">Edite profile</label>
+                    <label htmlFor="my-modal" className="btn modal-button btn-xs ml-[70%] lg:ml-[77%]">Edite profile</label>
 
                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                     <div className="modal mx-auto">
@@ -101,12 +100,13 @@ const MyProfile = () => {
                                     name='link'
                                     required
                                     type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" />
-                                <input className='btn btn-sm bg-green-500 ml-16' type="submit" value='edite' />
+                                <a href="javascript:window.location.href=window.location.href"><input className='btn btn-sm bg-green-500 ml-16' type="submit" value='edite' /></a>
+
                             </form>
 
 
                             <div className="modal-action">
-                                <label for="my-modal" className="btn btn-sm bg-red-500">cencel</label>
+                                <label htmlFor="my-modal" className="btn btn-sm bg-red-500">cencel</label>
 
 
 

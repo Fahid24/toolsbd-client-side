@@ -1,9 +1,10 @@
 import React from 'react';
+import Users from './Users';
 
 const MakeAdmin = () => {
     return (
         <div>
-            this is Make Admin
+            <Users></Users>
         </div>
     );
 };

@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../sheard/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; import Footer from '../sheard/Footer';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../sheard/Footer';
 
 
 const Purchase = () => {
@@ -18,7 +19,7 @@ const Purchase = () => {
     const [quant, setQuant] = useState(detail.minimumOrder);
 
     useEffect(() => {
-        fetch(` https://quiet-mesa-88785.herokuapp.com/tools/${id}`)
+        fetch(` http://localhost:5000/tools/${id}`)
             .then(res => res.json())
             .then(data => {
                 setDetail(data[0])
@@ -32,7 +33,7 @@ const Purchase = () => {
         data.image = image;
         data.quantity = quantity;
 
-        fetch(' https://quiet-mesa-88785.herokuapp.com/booking', {
+        fetch(' http://localhost:5000/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -42,9 +43,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(result => {
                 if (result.insertedId) {
-                    // my toast create some problem.it dosen't work properly.For that reason i use alart 
                     toast.success('Order booked')
-                    // alert('order booked')
                     reset()
                 }
             })

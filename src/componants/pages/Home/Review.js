@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import Footer from '../sheard/Footer';
 import Loading from '../sheard/Loading/Loading';
 
 const Review = () => {
@@ -26,7 +27,7 @@ const Review = () => {
             <div className="divider"></div>
 
             <h1 className="text-5xl text-center text-primary">User Reviews</h1>
-            <div className=' my-auto grid grid-cols-1 lg:grid gap-5 grid-cols-3 mx-20 lg:flex justify-center'>
+            <div className=' pt-12 my-auto grid grid-cols-1 mx-56 lg:mx-20 lg:flex justify-center'>
                 {
                     dreviews.map(review => <div
                         key={review._id}
@@ -53,6 +54,7 @@ const Review = () => {
                 }
 
             </div>
+
         </div >
     );
 };

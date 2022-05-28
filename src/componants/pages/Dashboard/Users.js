@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import Loading from '../Shared/Loading';
+import Loading from '../sheard/Loading/Loading';
 import UserRow from './UserRow';
 
+
 const Users = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://secret-dusk-46242.herokuapp.com/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -21,9 +22,9 @@ const Users = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Email</th>
+                            <th>Make Admin</th>
+                            <th>Delete user</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,7 @@ const Users = () => {
                                 key={user._id}
                                 user={user}
                                 refetch={refetch}
+                                isLoading={isLoading}
                             ></UserRow>)
                         }
                     </tbody>

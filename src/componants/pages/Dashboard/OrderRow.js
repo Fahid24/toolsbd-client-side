@@ -27,7 +27,7 @@ const OrderRow = ({ order, index, setOrder }) => {
             </td>
             <td>{quantity} <small>pics</small></td>
             <th className='flex justify-center' >
-                <td><label onClick={() => setOrder(order)} for="confirmation-cancel-modal"><ImCancelCircle className='text-2xl  text-red-700 font-bold' title='Delete'></ImCancelCircle></label></td>
+                <td><label onClick={() => setOrder(order)} htmlFor="confirmation-cancel-modal"><ImCancelCircle className='text-2xl  text-red-700 font-bold' title='Delete'></ImCancelCircle></label></td>
                 <td>  <FaAmazonPay className='text-3xl text-green-600' title='Payment'></FaAmazonPay></td>
             </th>
         </tr>
