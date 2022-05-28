@@ -10,7 +10,6 @@ const MyOrders = () => {
 
     const [user, loading] = useAuthState(auth);
     const [order, setOrder] = useState(null);
-    console.log(user);
     const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`).then(res => res.json()))
         ;
     // , {
@@ -24,7 +23,6 @@ const MyOrders = () => {
     if (loading || isLoading) {
         return <Loading></Loading>
     }
-    console.log(orders);
     return (
         <div>
             <div className="text-sm breadcrumbs">

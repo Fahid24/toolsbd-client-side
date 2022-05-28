@@ -24,6 +24,7 @@ const Login = () => {
     const [sendPasswordResetEmail, sending, Aerror] = useSendPasswordResetEmail(auth);
     const [email, setEmail] = useState('');
     const [token] = useToken(user)
+    console.log(token);
     let singinError;
     if (loading || sending) {
         return <Loading></Loading>
