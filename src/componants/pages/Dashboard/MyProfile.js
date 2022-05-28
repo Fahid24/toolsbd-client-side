@@ -14,7 +14,7 @@ const MyProfile = () => {
 
     const profiles = JSON.parse(window.localStorage.getItem('profile'));
 
-    // const { data: profiles, isLoading, refetch } = useQuery('profiles', () => fetch(`http://localhost:5000/profile/${user.email}`, {
+    // const { data: profiles, isLoading, refetch } = useQuery('profiles', () => fetch(`https://quiet-mesa-88785.herokuapp.com/profile/${user.email}`, {
     //     method: 'GET',
     //     headers: {
     //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +39,7 @@ const MyProfile = () => {
         }
         localStorage.setItem('profile', JSON.stringify(profile))
 
-        // fetch('http://localhost:5000/profile', {
+        // fetch('https://quiet-mesa-88785.herokuapp.com/profile', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'
@@ -79,6 +79,8 @@ const MyProfile = () => {
                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                     <div className="modal mx-auto">
                         <div className="modal-box">
+                            <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+
                             <form className=' items-center' onSubmit={handleSubmit}>
                                 <h1 className='text-xl font-bold  text-primary my-2'>Your Education: </h1>
                                 <input
@@ -119,9 +121,9 @@ const MyProfile = () => {
 
 
 
-                    <h1 className='text-2xl font-bold text-primary my-2' >Your Education: <span className='text-xl text-black' >{profiles.education}</span></h1>
-                    <h1 className='text-2xl font-bold text-primary' >Your location (city/district): <span className='text-xl text-black' >{profiles.location}</span></h1>
-                    <h1 className='text-2xl font-bold text-primary my-2' >phone number: <span className='text-xl text-black' >{profiles.phone}</span></h1>
+                    <h1 className='text-2xl font-bold text-primary my-2' >Your Education: <span className='text-xl text-black' >{profiles?.education}</span></h1>
+                    <h1 className='text-2xl font-bold text-primary' >Your location (city/district): <span className='text-xl text-black' >{profiles?.location}</span></h1>
+                    <h1 className='text-2xl font-bold text-primary my-2' >phone number: <span className='text-xl text-black' >{profiles?.phone}</span></h1>
                     <a className='mx-auto' href='https://www.linkedin.com/in/fahid-hasan-fuad-a39180235/'> <BsLinkedin className='text-5xl font-bold'></BsLinkedin></a>
 
 

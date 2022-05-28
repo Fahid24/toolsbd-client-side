@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import Footer from '../sheard/Footer';
-import Loading from '../sheard/Loading/Loading';
+import Footer from './sheard/Footer';
+import Loading from './sheard/Loading/Loading';
 
-const Review = () => {
+const Reviews = () => {
     const [reviews, setreviews] = useState([]);
-    const dreviews = [...reviews.slice(0, 6)]
+
 
     useEffect(() => {
         const url = 'https://quiet-mesa-88785.herokuapp.com/review';
@@ -18,20 +18,21 @@ const Review = () => {
             })
     }, [])
 
-    if (!dreviews.length) {
+    if (!reviews.length) {
         return <Loading></Loading>
     }
 
     return (
         <div className=''>
-            <div className="divider"></div>
+            <div className="divider mt-10 ">
+                <h1 className="text-5xl text-center text-primary">User Reviews</h1>
+            </div>
 
-            <h1 className="text-5xl text-center text-primary">User Reviews</h1>
-            <div className=' pt-12 my-auto grid grid-cols-1 mx-56 lg:mx-20 lg:flex justify-center'>
+            <div className='grid grid-cols-1 pt-12 my-auto flex justify-center'>
                 {
-                    dreviews.map(review => <div
+                    reviews.map(review => <div
                         key={review._id}
-                        className="card w-full m-10 card-side bg-base-100 shadow-xl">
+                        className="card w-full m-10 card-side bg-base-100  shadow-xl">
                         <figure> <div className='p-5'>
                             <div className="avatar">
                                 <div className=" w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -54,9 +55,10 @@ const Review = () => {
                 }
 
             </div>
+            <Footer></Footer>
 
         </div >
     );
 };
 
-export default Review;
+export default Reviews;

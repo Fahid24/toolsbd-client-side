@@ -56,7 +56,7 @@ const AddReview = () => {
             userName: user?.displayName,
             image: image
         }
-        fetch('http://localhost:5000/review', {
+        fetch('https://quiet-mesa-88785.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

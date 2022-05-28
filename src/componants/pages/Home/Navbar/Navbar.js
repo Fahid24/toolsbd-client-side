@@ -29,9 +29,10 @@ const Navbar = () => {
                             user && <li><Link to='/dashboard'>Dashboard</Link></li>
                         }
                         <li><Link to='/tools'>More Tools</Link></li>
-                        <li><Link to='/about'>About</Link></li>
+                        <li><Link to='/reviews'>Reviews</Link></li>
 
-                        <li><Link to='/contact'>Contact Us</Link></li>
+                        <li><Link to='/portfolio'>My Portfolio</Link></li>
+                        <li><Link to='/blogs'>Blogs</Link></li>
                     </ul>
                 </div>
                 <Link to='' className="btn btn-ghost normal-case text-4xl">ToolsBD<img className='w-[50px]' src={image} alt="" /></Link>
@@ -46,7 +47,8 @@ const Navbar = () => {
                     <li><Link className='font-bold text-xl' to='/tools'>More Tools</Link></li>
                     <li><Link className='font-bold text-xl' to='/reviews'>Reviews</Link></li>
 
-                    <li><Link className='font-bold text-xl' to='/contact'>Contact Us</Link></li>
+                    <li><Link className='font-bold text-xl' to='/portfolio'>My Portfolio</Link></li>
+                    <li><Link className='font-bold text-xl' to='/blogs'>Blogs</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">

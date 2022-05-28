@@ -10,8 +10,8 @@ import ManageProductRow from './ManageProductRow';
 import OrderRow from './OrderRow';
 
 const ManageProducts = () => {
-    const [tool, setTool] = useState()
-    const { data: tools, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/tools`).then(res => res.json()));
+    const [tool, setTool] = useState(null)
+    const { data: tools, isLoading, refetch } = useQuery('order', () => fetch(`https://quiet-mesa-88785.herokuapp.com/tools`).then(res => res.json()));
 
 
     if (isLoading) {

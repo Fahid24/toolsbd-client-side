@@ -13,7 +13,7 @@ const ManageOrders = () => {
 
     const [user, loading] = useAuthState(auth);
     const [order, setOrder] = useState(null);
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking`).then(res => res.json()))
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`https://quiet-mesa-88785.herokuapp.com/booking`).then(res => res.json()))
         ;
     // , {
     //     method: 'GET',
@@ -31,7 +31,7 @@ const ManageOrders = () => {
             <div className="text-sm breadcrumbs">
                 <ul>
                     <li>{orders.length}</li>
-                    <li>My orders</li>
+                    <li>All orders</li>
                 </ul>
             </div>
 
@@ -40,7 +40,7 @@ const ManageOrders = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Parts info</th>
+                            <th>Tools info</th>
                             <th>Buyer</th>
                             <th>Order Quantity</th>
                             <th className='text-center'>Action</th>

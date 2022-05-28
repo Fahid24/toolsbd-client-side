@@ -8,6 +8,7 @@ import Loading from '../sheard/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../sheard/Footer';
+import useAdmin from '../../../Hooks/useAdmin';
 
 
 const Purchase = () => {
@@ -17,9 +18,9 @@ const Purchase = () => {
     const [detail, setDetail] = useState({})
     const { name, description, image, quantity, minimumOrder, price } = detail;
     const [quant, setQuant] = useState(detail.minimumOrder);
-
+    const [admin] = useAdmin(user)
     useEffect(() => {
-        fetch(` http://localhost:5000/tools/${id}`)
+        fetch(` https://quiet-mesa-88785.herokuapp.com/tools/${id}`)
             .then(res => res.json())
             .then(data => {
                 setDetail(data[0])
@@ -33,7 +34,7 @@ const Purchase = () => {
         data.image = image;
         data.quantity = quantity;
 
-        fetch(' http://localhost:5000/booking', {
+        fetch(' https://quiet-mesa-88785.herokuapp.com/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +63,9 @@ const Purchase = () => {
         <div>
             <h1 className='text-primary text-center my-5 font-bold text-3xl'>Hi <span className='text-secondary'>{user.displayName}</span> welcome to our webside.</h1>
             <h3 className='text-primary text-center my-5 font-bold text-xl'>Are you ready for booking some <span className='text-secondary'>{name}</span>?</h3>
-
+            {
+                admin && <h1 className='text-3xl text-center text-bold text-red-500'>Note: Admin can't booked product please try with nonadmin user id</h1>
+            }
             <div className="hero max-w-screen-lg pb-10  mx-auto  mb-16 mt-2">
 
                 <div className="hero-content flex-col lg:flex-row">
@@ -117,7 +120,7 @@ const Purchase = () => {
                                 {(quant < minimumOrder) && <span className='text-red-500'>Please input minimum {minimumOrder} pics or more </span>}
                                 {(quant > quantity) && <span className='text-red-500'>Please input maximum {quantity} or fewer </span>}
                             </div>
-                            <input disabled={(quant < minimumOrder) || (quant > quantity)} type="submit" value='book now' className="btn mt-5 w-full btn-primary bg-gradient-to-r from-primary font-bold to-secondary" />
+                            <input disabled={admin || (quant < minimumOrder) || (quant > quantity)} type="submit" value='book now' className="btn mt-5 w-full btn-primary bg-gradient-to-r from-primary font-bold to-secondary" />
 
                         </form>
 

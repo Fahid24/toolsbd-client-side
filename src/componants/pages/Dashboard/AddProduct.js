@@ -11,7 +11,7 @@ const AddProduct = () => {
     const [user] = useAuthState(auth)
     const onSubmit = data => {
         data.email = user.email;
-        const url = 'http://localhost:5000/tools';
+        const url = 'https://quiet-mesa-88785.herokuapp.com/tools';
         fetch(url, {
             method: 'POST',
             headers: {

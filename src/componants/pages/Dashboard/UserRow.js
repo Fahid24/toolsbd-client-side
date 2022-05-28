@@ -6,7 +6,7 @@ import Loading from '../sheard/Loading/Loading';
 const UserRow = ({ user, refetch, isLoading }) => {
     const { email, role, _id } = user;
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://quiet-mesa-88785.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -30,7 +30,7 @@ const UserRow = ({ user, refetch, isLoading }) => {
         return <Loading></Loading>
     }
     const handleRemove = (id) => {
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://quiet-mesa-88785.herokuapp.com/user/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const UserRow = ({ user, refetch, isLoading }) => {
     }
     return (
         <tr>
-            <th>1</th>
+            <th className='text-3xl font-bold'>*</th>
             <td>{email}</td>
             <td>{role !== 'admin' && <button onClick={makeAdmin} class="btn bg-green-500 btn-xs">Make Admin</button>}</td>
             <td><button onClick={() => handleRemove(_id)} class="btn bg-red-500 btn-xs">Remove User</button></td>

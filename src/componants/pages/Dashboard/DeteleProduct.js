@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const DeteleProduct = (refetch, tool) => {
     const handleDelete = () => {
-        fetch(`http://localhost:5000/booking/${tool._id}`, {
+        fetch(`https://quiet-mesa-88785.herokuapp.com/tools/${tool._id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

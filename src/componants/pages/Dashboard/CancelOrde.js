@@ -13,12 +13,11 @@ const CancelOrder = ({ order, refetch }) => {
 
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/booking/${order._id}`, {
+        fetch(`https://quiet-mesa-88785.herokuapp.com/booking/${order._id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data?.deletedCount === 1) {
                     toast.success('Successfully deleted order');
                     refetch()

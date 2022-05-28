@@ -10,14 +10,14 @@ const MyOrders = () => {
 
     const [user, loading] = useAuthState(auth);
     const [order, setOrder] = useState(null);
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking/${user.email}`).then(res => res.json()))
-        ;
-    // , {
-    //     method: 'GET',
-    //     headers: {
-    //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    //     }
-    // }
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`https://quiet-mesa-88785.herokuapp.com/booking/${user.email}`).then(res => res.json())
+
+        , {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
 
 
     if (loading || isLoading) {

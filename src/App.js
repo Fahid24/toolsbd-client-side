@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
+import Blogs from './componants/pages/Blogs';
 import AddProduct from './componants/pages/Dashboard/AddProduct';
 import AddReview from './componants/pages/Dashboard/AddReview';
 import Dashboard from './componants/pages/Dashboard/Dashboard';
@@ -14,8 +15,10 @@ import Navbar from './componants/pages/Home/Navbar/Navbar';
 import Login from './componants/pages/Login/Login';
 import RequiredAuth from './componants/pages/Login/RequiredAuth/RequiredAuth';
 import Singup from './componants/pages/Login/Singup';
+import MyPortfolio from './componants/pages/MyPortfolio';
 import NotFound from './componants/pages/NotFound';
 import Purchase from './componants/pages/Purchase/Purchase';
+import Reviews from './componants/pages/Reviews';
 import Tools from './componants/pages/Tools';
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/tools' element={<Tools></Tools>}></Route>
         <Route path='/singup' element={<Singup></Singup>}></Route>
+        <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+        <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/dashboard' element={<RequiredAuth><Dashboard></Dashboard></RequiredAuth>}>
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='orders' element={<MyOrders></MyOrders>}></Route>
