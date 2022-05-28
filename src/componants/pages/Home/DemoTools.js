@@ -26,8 +26,6 @@ const DemoTools = () => {
             </div>
             <div className="divider">
                 <h1 className="text-3xl text-primary font-bold text-center ">Our Tools</h1>
-
-
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:flex sm:grid justify-items-center   p-12">
                 {
